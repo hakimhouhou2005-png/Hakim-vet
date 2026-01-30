@@ -2,231 +2,222 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Calculateur de moyenne vétérinaire – 2ᵉ année</title>
+<title>Calculateur de moyenne vétérinaire</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: linear-gradient(135deg, #e8f5ee, #f7fcfa);
+  font-family: Arial, sans-serif;
+  background: #f4f9f6;
   margin: 0;
-  padding: 0;
-  color: #333;
+  padding: 20px;
 }
 
-.container {
-  max-width: 900px;
-  margin: 40px auto;
-  background: #ffffff;
-  padding: 35px;
-  border-radius: 16px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+.made-by {
+  position: fixed;
+  top: 8px;
+  width: 100%;
+  text-align: center;
+  color: #2e7d32;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 h1 {
   text-align: center;
-  color: #1f7a4d;
-  margin-bottom: 5px;
+  color: #1b5e20;
+  margin-top: 40px;
 }
 
-h2 {
-  text-align: center;
-  color: #4caf82;
-  font-weight: normal;
-  margin-bottom: 30px;
+.container {
+  max-width: 900px;
+  margin: auto;
 }
 
-.subject {
-  background: #f6fbf8;
-  border: 1px solid #dcefe5;
-  border-left: 6px solid #2e8b57;
-  border-radius: 10px;
+.card {
+  background: white;
   padding: 15px;
-  margin-bottom: 18px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-.subject:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-}
-
-.subject h4 {
-  margin: 0 0 10px 0;
-  color: #1f7a4d;
-}
-
-.inputs {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+.card h3 {
+  margin-top: 0;
+  color: #2e7d32;
 }
 
 input {
-  width: 90px;
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
+  width: 80px;
+  padding: 6px;
+  margin: 5px;
 }
 
-input:focus {
-  outline: none;
-  border-color: #2e8b57;
+.moyenne {
+  font-weight: bold;
+  color: #1b5e20;
 }
 
 button {
   display: block;
   margin: 30px auto;
-  padding: 14px 35px;
-  background: linear-gradient(135deg, #2e8b57, #4caf82);
+  padding: 12px 30px;
+  font-size: 16px;
+  background: #2e7d32;
   color: white;
   border: none;
-  border-radius: 30px;
-  font-size: 16px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  background: #1b5e20;
 }
 
 .result {
   text-align: center;
-  margin-top: 25px;
-  padding: 20px;
-  border-radius: 12px;
-  background: #f6fbf8;
-  animation: fadeIn 0.8s ease;
-}
-
-.hidden {
-  display: none;
-}
-
-.footer {
-  text-align: center;
-  margin-top: 35px;
-  color: #777;
-  font-size: 14px;
-  animation: slide 4s infinite;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide {
-  0% {opacity: 0;}
-  50% {opacity: 1;}
-  100% {opacity: 0;}
+  font-size: 22px;
+  color: #1b5e20;
 }
 </style>
 </head>
 
 <body>
 
+<div class="made-by">Made by Hakim Houhou</div>
+
+<h1>Calculateur de moyenne vétérinaire – 3ᵉ année</h1>
+
 <div class="container">
-  <h1>Calculateur de moyenne vétérinaire</h1>
-  <h2>2ᵉ année – Médecine vétérinaire</h2>
 
-  <div id="subjects"></div>
+<!-- Anatomie -->
+<div class="card">
+<h3>Anatomie 2 (Coef 2)</h3>
+<input id="anat_tp" placeholder="TP">
+<input id="anat_cc" placeholder="CC">
+<input id="anat_emd" placeholder="EMD">
+<p>Moyenne : <span class="moyenne" id="anat_moy">--</span></p>
+</div>
 
-  <button onclick="calculateAverage()">Calculer la moyenne</button>
+<!-- Physiologie -->
+<div class="card">
+<h3>Physiologie (Coef 3)</h3>
+<input id="physio_cc" placeholder="CC">
+<input id="physio_emd" placeholder="EMD">
+<p>Moyenne : <span class="moyenne" id="physio_moy">--</span></p>
+</div>
 
-  <div id="result" class="result hidden">
-    <h3 id="average"></h3>
-    <p id="classification"></p>
-  </div>
+<!-- Histologie -->
+<div class="card">
+<h3>Histologie spéciale (Coef 2)</h3>
+<input id="histo_tp" placeholder="TP">
+<input id="histo_cc" placeholder="CC">
+<input id="histo_emd" placeholder="EMD">
+<p>Moyenne : <span class="moyenne" id="histo_moy">--</span></p>
+</div>
 
-  <div class="footer">Made by Hakim Houhou</div>
+<!-- Ethnologie -->
+<div class="card">
+<h3>Ethnologie spéciale (Coef 2)</h3>
+<input id="ethno_tp" placeholder="TP">
+<input id="ethno_cc" placeholder="CC">
+<input id="ethno_emd" placeholder="EMD">
+<p>Moyenne : <span class="moyenne" id="ethno_moy">--</span></p>
+</div>
+
+<!-- Reproduction -->
+<div class="card">
+<h3>Physiologie de la reproduction (Coef 2)</h3>
+<input id="repro_tp" placeholder="TP">
+<input id="repro_cc" placeholder="CC">
+<input id="repro_emd" placeholder="EMD">
+<p>Moyenne : <span class="moyenne" id="repro_moy">--</span></p>
+</div>
+
+<!-- Virologie -->
+<div class="card">
+<h3>Virologie (Coef 2)</h3>
+<input id="viro_tp" placeholder="TP">
+<input id="viro_cc" placeholder="CC">
+<input id="viro_emd" placeholder="EMD">
+<p>Moyenne : <span class="moyenne" id="viro_moy">--</span></p>
+</div>
+
+<!-- Immuno -->
+<div class="card">
+<h3>Immuno-vaccinologie (Coef 2)</h3>
+<input id="immuno_cc" placeholder="CC">
+<input id="immuno_emd" placeholder="EMD">
+<p>Moyenne : <span class="moyenne" id="immuno_moy">--</span></p>
+</div>
+
+<!-- Bactério -->
+<div class="card">
+<h3>Bactériologie (Coef 2)</h3>
+<input id="bact_tp" placeholder="TP">
+<input id="bact_cc" placeholder="CC">
+<input id="bact_emd" placeholder="EMD">
+<p>Moyenne : <span class="moyenne" id="bact_moy">--</span></p>
+</div>
+
+<!-- Alimentation -->
+<div class="card">
+<h3>Alimentation (Coef 3)</h3>
+<input id="alim_tp" placeholder="TP">
+<input id="alim_cc" placeholder="CC">
+<input id="alim_emd" placeholder="EMD">
+<p>Moyenne : <span class="moyenne" id="alim_moy">--</span></p>
+</div>
+
+<button onclick="calculer()">Calculer la moyenne générale</button>
+
+<div class="result">
+Moyenne générale : <span id="moyenne_generale">--</span>
+</div>
+
 </div>
 
 <script>
-const subjects = [
-  { name: "Anatomie 2", coef: 2, type: "TP_CC_EMD" },
-  { name: "Physiologie", coef: 3, type: "CC_EMD" },
-  { name: "Histologie spéciale", coef: 2, type: "TP_CC_EMD" },
-  { name: "Ethnologie spéciale", coef: 2, type: "TP_CC_EMD" },
-  { name: "Physiologie de la reproduction", coef: 2, type: "TP_CC_EMD" },
-  { name: "Virologie", coef: 2, type: "TP_CC_EMD" },
-  { name: "Immuno-vaccinologie", coef: 2, type: "CC_EMD" },
-  { name: "Bactériologie", coef: 2, type: "TP_CC_EMD" },
-  { name: "Alimentation", coef: 3, type: "TP_CC_EMD" }
-];
+function val(id){ return Number(document.getElementById(id).value) || 0; }
 
-const container = document.getElementById("subjects");
+function calculer(){
+let total=0, coef=0;
 
-subjects.forEach(s => {
-  let html = `
-    <div class="subject">
-      <h4>${s.name} (Coef ${s.coef})</h4>
-      <div class="inputs">
-  `;
-  if (s.type.includes("TP"))
-    html += `<input type="number" placeholder="TP" id="${s.name}_TP">`;
-  if (s.type.includes("CC"))
-    html += `<input type="number" placeholder="CC" id="${s.name}_CC">`;
-  html += `<input type="number" placeholder="EMD" id="${s.name}_EMD"></div></div>`;
-  container.innerHTML += html;
-});
-
-function calculateAverage() {
-  let total = 0;
-  let coefSum = 0;
-
-  subjects.forEach(s => {
-    let grade = 0;
-
-    if (s.type === "TP_CC_EMD") {
-      const TP = +document.getElementById(s.name+"_TP").value || 0;
-      const CC = +document.getElementById(s.name+"_CC").value || 0;
-      const EMD = +document.getElementById(s.name+"_EMD").value || 0;
-      grade = TP*0.2 + CC*0.2 + EMD*0.6;
-    } else {
-      const CC = +document.getElementById(s.name+"_CC").value || 0;
-      const EMD = +document.getElementById(s.name+"_EMD").value || 0;
-      grade = CC*0.3 + EMD*0.7;
-    }
-
-    total += grade * s.coef;
-    coefSum += s.coef;
-  });
-
-  const avg = (total / coefSum).toFixed(2);
-  showResult(avg);
+function mat(tp,cc,emd,c){
+let m=tp*0.2+cc*0.2+emd*0.6;
+return [m,c];
 }
 
-function showResult(avg) {
-  let mention="", color="";
+let a=mat(val("anat_tp"),val("anat_cc"),val("anat_emd"),2);
+anat_moy.innerText=a[0].toFixed(2); total+=a[0]*2; coef+=2;
 
-  if (avg < 8) { mention="Très faible"; color="#8B0000"; }
-  else if (avg < 10) { mention="Faible"; color="#FF4500"; }
-  else if (avg < 11.5) { mention="Passable"; color="#FFA500"; }
-  else if (avg < 13.5) { mention="Assez bien"; color="#9ACD32"; }
-  else if (avg < 16) { mention="Bien"; color="#2e8b57"; }
-  else { mention="Excellent"; color="#006400"; }
+let p=val("physio_cc")*0.3+val("physio_emd")*0.7;
+physio_moy.innerText=p.toFixed(2); total+=p*3; coef+=3;
 
-  document.getElementById("average").textContent = "Moyenne générale : " + avg;
-  const c = document.getElementById("classification");
-  c.textContent = "Mention : " + mention;
-  c.style.color = color;
+let h=mat(val("histo_tp"),val("histo_cc"),val("histo_emd"),2);
+histo_moy.innerText=h[0].toFixed(2); total+=h[0]*2; coef+=2;
 
-  document.getElementById("result").classList.remove("hidden");
+let e=mat(val("ethno_tp"),val("ethno_cc"),val("ethno_emd"),2);
+ethno_moy.innerText=e[0].toFixed(2); total+=e[0]*2; coef+=2;
+
+let r=mat(val("repro_tp"),val("repro_cc"),val("repro_emd"),2);
+repro_moy.innerText=r[0].toFixed(2); total+=r[0]*2; coef+=2;
+
+let v=mat(val("viro_tp"),val("viro_cc"),val("viro_emd"),2);
+viro_moy.innerText=v[0].toFixed(2); total+=v[0]*2; coef+=2;
+
+let i=val("immuno_cc")*0.3+val("immuno_emd")*0.7;
+immuno_moy.innerText=i.toFixed(2); total+=i*2; coef+=2;
+
+let b=mat(val("bact_tp"),val("bact_cc"),val("bact_emd"),2);
+bact_moy.innerText=b[0].toFixed(2); total+=b[0]*2; coef+=2;
+
+let al=mat(val("alim_tp"),val("alim_cc"),val("alim_emd"),3);
+alim_moy.innerText=al[0].toFixed(2); total+=al[0]*3; coef+=3;
+
+moyenne_generale.innerText=(total/coef).toFixed(2);
 }
 </script>
 
 </body>
 </html>
+
